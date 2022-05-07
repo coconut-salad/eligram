@@ -1,2 +1,3 @@
+src/utils/env/env.dev.sh
 node_modules
 db

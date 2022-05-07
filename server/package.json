@@ -4,7 +4,8 @@
   "description": "API server for Eligram",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon ."
+    "test": "nodemon .",
+    "mongodb": "mongod --dbpath ./db --replSet rs0"
   },
   "repository": {
     "type": "git",
@@ -24,10 +25,12 @@
   },
   "homepage": "https://github.com/coconut-salad/eligram#readme",
   "dependencies": {
+    "@types/mongoose": "^5.11.97",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "express-validator": "^6.14.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.2"
   }
 }
