@@ -1,0 +1,26 @@
+{
+  "name": "eligram",
+  "version": "1.0.0",
+  "description": "API server for Eligram",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coconut-salad/eligram.git"
+  },
+  "keywords": [
+    "API",
+    "NodeJS",
+    "Express",
+    "Angular",
+    "MEAN-Stack"
+  ],
+  "author": "Rituparna Warwatkar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coconut-salad/eligram/issues"
+  },
+  "homepage": "https://github.com/coconut-salad/eligram#readme"
+}
