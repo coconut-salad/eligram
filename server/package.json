@@ -22,5 +22,12 @@
   "bugs": {
     "url": "https://github.com/coconut-salad/eligram/issues"
   },
-  "homepage": "https://github.com/coconut-salad/eligram#readme"
+  "homepage": "https://github.com/coconut-salad/eligram#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.0",
+    "mongoose": "^6.3.2"
+  }
 }
