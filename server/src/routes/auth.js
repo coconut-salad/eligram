@@ -4,7 +4,7 @@ const { completeProfile } = require('../controllers/auth/completeProfile');
 const { login } = require('../controllers/auth/login');
 
 const { signup } = require('../controllers/auth/signup');
-const { verifyEmail } = require('../controllers/auth/verify');
+const { verifyEmail, verifyToken } = require('../controllers/auth/verify');
 const User = require('./../models/user');
 
 const router = express.Router();
@@ -48,6 +48,8 @@ router.post(
 );
 
 router.post('/verify-email', verifyEmail);
+
+router.post('/verify-token', verifyToken);
 
 router.post('/complete-profile', completeProfile);
 

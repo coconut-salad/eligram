@@ -47,3 +47,17 @@ exports.verifyEmail = async (req, res, next) => {
     return next(errorHandler());
   }
 };
+
+exports.verifyToken = async (req, res, next) => {
+  const { token } = req.body;
+  try {
+    jwt.verify(token, process.env.JWT_SECRET);
+    return res.json({
+      valid: true,
+    });
+  } catch (error) {
+    return res.status(401).json({
+      valid: false,
+    });
+  }
+};

@@ -1,17 +1,30 @@
 <nav class="navbar navbar-dark navbar-expand-md bg-dark">
-  <div class="container-fluid">
-    <div class="d-flex align-center">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasNavbar"
-        aria-controls="offcanvasNavbar"
-        mat-icon-button
-      >
-        <mat-icon style="color: white">menu</mat-icon>
-      </button>
-      <a class="navbar-brand" routerLink="/">Eligram</a>
+  <div class="container-fluid d-block">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-center">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          mat-icon-button
+        >
+          <mat-icon style="color: white">menu</mat-icon>
+        </button>
+        <a class="navbar-brand" routerLink="/">Eligram</a>
+      </div>
+      <div *ngIf="isAuth">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon style="color: white">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
     </div>
     <div
       class="offcanvas offcanvas-start"
@@ -20,7 +33,7 @@
       aria-labelledby="offcanvasNavbarLabel"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+        <h2 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h2>
         <button
           type="button"
           class="btn-close text-reset"
@@ -30,7 +43,7 @@
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="!isAuth">
             <a
               mat-button
               class="sidenav-button"
@@ -40,7 +53,7 @@
               Login
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="!isAuth">
             <a
               mat-button
               class="sidenav-button"

@@ -23,14 +23,6 @@ export class IsAuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (route.data['authRequired']) {
-      if (!this.authService.getAuthStatus()) {
-        this.router.navigate(['/auth', 'login']);
-        return false;
-      } else {
-        return true;
-      }
-    }
     if (!route.data['authRequired']) {
       if (this.authService.getAuthStatus()) {
         this.router.navigate(['/']);
@@ -39,6 +31,16 @@ export class IsAuthGuard implements CanActivate {
         return true;
       }
     }
-    return true;
+
+    if (route.data['authRequired']) {
+      if (!this.authService.getAuthStatus()) {
+        this.router.navigate(['/auth', 'login']);
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    return false;
   }
 }

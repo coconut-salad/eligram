@@ -7,13 +7,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
 
 const material = [
   MatIconModule,
-  MatButtonModule,
+  MatMenuModule,
   MatCardModule,
-  MatSelectModule,
   MatInputModule,
+  MatButtonModule,
+  MatSelectModule,
   MatSnackBarModule,
   MatDatepickerModule,
 ];

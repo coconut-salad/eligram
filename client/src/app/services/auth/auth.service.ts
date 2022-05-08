@@ -35,8 +35,30 @@ export class AuthService {
     return this.authStatusNotifier.asObservable();
   }
 
+  autoLogin() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
+    this.handleTokenChange('', token);
+    axios
+      .post(this.BASE_URL + '/auth/verify-token', { token })
+      .then((result) => {
+        if (result.data.valid) {
+          this.handleTokenChange('', token);
+          return;
+        }
+      })
+      .catch((err) => {
+        this._snackBar.open('Session Expired', '', { duration: 2500 });
+        this.logout();
+      });
+  }
+
   handleTokenChange(message: string, token: string) {
-    this._snackBar.open(message, '', { duration: 2500 });
+    if (message.length > 0) {
+      this._snackBar.open(message, '', { duration: 2500 });
+    }
     this.authToken = token;
     this.user = JSON.parse(window.atob(this.authToken.split('.')[1]));
     this.isAuth = true;
@@ -71,6 +93,22 @@ export class AuthService {
       .catch((err) => {
         this._snackBar.open(err.response.data.message, '', { duration: 2500 });
       });
+  }
+
+  logout() {
+    this.authToken = '';
+    this.isAuth = false;
+    this.user = {
+      email: '',
+      emailVerified: false,
+      id: '',
+      profileComplete: false,
+    };
+    this.authStatusNotifier.next(false);
+    this.userChangeNotifier.next(this.user);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigate(['/auth', 'login']);
   }
 
   verifyEmail(vCode: number) {
