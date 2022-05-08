@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { Subject } from 'rxjs';
-import { AuthUser, SignUpForm } from 'src/app/models/auth-forms';
+import { AuthUser, LoginForm, SignUpForm } from 'src/app/models/auth-forms';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +20,8 @@ export class AuthService {
     emailVerified: false,
     profileComplete: false,
   };
+
+  constructor(private _snackBar: MatSnackBar, private router: Router) {}
 
   getUser() {
     return this.user;
@@ -44,14 +46,27 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(this.user));
   }
 
-  constructor(private _snackBar: MatSnackBar, private router: Router) {}
-
   signup(signupForm: SignUpForm) {
     axios
       .post(this.BASE_URL + '/auth/signup', { ...signupForm })
       .then((result) => {
         this.handleTokenChange(result.data.message, result.data.token);
         this.router.navigate(['/auth', 'verify-email']);
+      })
+      .catch((err) => {
+        this._snackBar.open(err.response.data.message, '', { duration: 2500 });
+      });
+  }
+
+  login(loginForm: LoginForm) {
+    axios
+      .post(this.BASE_URL + '/auth/login', {
+        email: loginForm.email,
+        password: loginForm.password,
+      })
+      .then((result) => {
+        this.handleTokenChange(result.data.message, result.data.token);
+        this.router.navigate(['/']);
       })
       .catch((err) => {
         this._snackBar.open(err.response.data.message, '', { duration: 2500 });

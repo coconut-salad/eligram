@@ -1,6 +1,7 @@
 const express = require('express');
 const { body } = require('express-validator');
 const { completeProfile } = require('../controllers/auth/completeProfile');
+const { login } = require('../controllers/auth/login');
 
 const { signup } = require('../controllers/auth/signup');
 const { verifyEmail } = require('../controllers/auth/verify');
@@ -49,5 +50,7 @@ router.post(
 router.post('/verify-email', verifyEmail);
 
 router.post('/complete-profile', completeProfile);
+
+router.post('/login', [body('email').normalizeEmail()], login);
 
 module.exports = router;

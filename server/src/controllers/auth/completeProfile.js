@@ -18,7 +18,13 @@ exports.completeProfile = async (req, res, next) => {
 
     await User.updateOne(
       { email: user.email },
-      { $set: { dateOfBirth, gender, profileComplete: true } }
+      {
+        $set: {
+          dateOfBirth,
+          gender,
+          profileComplete: true,
+        },
+      }
     );
 
     const newToken = jwt.sign(

@@ -12,3 +12,8 @@ export interface AuthUser {
   emailVerified: boolean;
   profileComplete: boolean;
 }
+
+export interface LoginForm {
+  email: string;
+  password: string;
+}

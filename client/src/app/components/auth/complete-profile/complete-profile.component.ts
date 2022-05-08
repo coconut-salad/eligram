@@ -26,10 +26,7 @@ export class CompleteProfileComponent implements OnInit {
       return;
     }
     const { value } = this.completeProfileForm;
-    this.authService.completeProfile(
-      value.dateOfBirth.toLocaleDateString(),
-      value.gender
-    );
+    this.authService.completeProfile(value.dateOfBirth.valueOf(), value.gender);
     // .replace(/\//g, '-')
   }
 }

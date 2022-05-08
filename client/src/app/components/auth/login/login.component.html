@@ -2,17 +2,27 @@
   <mat-card>
     <mat-card-title>Log In</mat-card-title>
     <br />
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="flex justify-content-between">
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Email</mat-label>
-          <input type="email" matInput placeholder="Ex. john@example.com" />
+          <input
+            type="email"
+            matInput
+            placeholder="Ex. john@example.com"
+            formControlName="email"
+          />
         </mat-form-field>
       </div>
       <div class="flex justify-content-between">
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Password</mat-label>
-          <input type="password" matInput placeholder="Password" />
+          <input
+            type="password"
+            matInput
+            placeholder="Password"
+            formControlName="password"
+          />
         </mat-form-field>
       </div>
       <br />
