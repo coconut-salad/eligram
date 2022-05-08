@@ -9,6 +9,8 @@ const userSchema = new mongoose.Schema({
   emailVerified: { type: Boolean, required: true, default: false },
   profileComplete: { type: Boolean, required: true, default: false },
   vCode: { type: Number },
+  dateOfBirth: { type: Date, required: true, default: Date.now() },
+  gender: { type: String, required: true, default: 'M', enum: ['M', 'F'] },
 });
 
 module.exports = mongoose.model('User', userSchema);

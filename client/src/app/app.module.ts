@@ -12,6 +12,7 @@ import { VerifyEmailComponent } from './components/auth/verify-email/verify-emai
 import { CompleteProfileComponent } from './components/auth/complete-profile/complete-profile.component';
 import { FeedComponent } from './components/home/feed/feed.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     AppMaterialModule,
     ReactiveFormsModule,
+    MatNativeDateModule,
     BrowserAnimationsModule,
   ],
   providers: [],

@@ -1,1 +1,46 @@
-<p>complete-profile works!</p>
+<div class="container">
+  <mat-card>
+    <mat-card-title>Complete Your Profile</mat-card-title>
+    <br />
+    <form [formGroup]="completeProfileForm" (ngSubmit)="completeProfile()">
+      <div class="flex justify-content-between">
+        <mat-form-field class="w-half" appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            (focus)="picker.open()"
+            formControlName="dateOfBirth"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="w-half">
+          <mat-label>Gender</mat-label>
+          <mat-select name="gender" formControlName="gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+              {{ gender.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <div>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="w-full"
+          >
+            Save Details
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

@@ -2,6 +2,10 @@
   display: block;
 }
 
+.align-center {
+  align-items: center;
+}
+
 .sidenav-button {
   text-align: left;
   width: 100%;

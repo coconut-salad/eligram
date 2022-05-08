@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
-const User = require('../../models/user');
 const errorHandler = require('../../utils/errorHandler');
+const User = require('./../../models/user');
 
-exports.verifyEmail = async (req, res, next) => {
+exports.completeProfile = async (req, res, next) => {
   try {
-    const { vCode } = req.body;
+    const { dateOfBirth, gender } = req.body;
     const token = req.headers['authorization'];
     if (!token) {
       return next(errorHandler('Unauthorized', 401));
@@ -12,16 +12,13 @@ exports.verifyEmail = async (req, res, next) => {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findOne({ email: payload.email });
 
-    if (user.emailVerified) {
-      return next(errorHandler('Email already verified', 409));
-    }
-    if (user.vCode !== vCode) {
-      return next(errorHandler('Invalid Verification Code', 403));
+    if (user.profileComplete) {
+      return next(errorHandler('Profile already complete', 403));
     }
 
     await User.updateOne(
       { email: user.email },
-      { $set: { emailVerified: true } }
+      { $set: { dateOfBirth, gender, profileComplete: true } }
     );
 
     const newToken = jwt.sign(
@@ -29,14 +26,14 @@ exports.verifyEmail = async (req, res, next) => {
         id: user._id,
         email: user.email,
         emailVerified: true,
-        profileComplete: false,
+        profileComplete: true,
       },
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
 
     return res.status(200).json({
-      message: 'Email Verified',
+      message: 'Profile Completed',
       status: 200,
       token: newToken,
     });

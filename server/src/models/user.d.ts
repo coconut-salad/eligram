@@ -9,6 +9,8 @@ interface User extends Document {
   emailVerified: boolean;
   profileComplete: boolean;
   vCode?: number;
+  dateOfBirth: string;
+  gender: string;
 }
 
 let user: Model<User>;
