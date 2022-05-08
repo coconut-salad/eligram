@@ -1,0 +1,43 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Verify Email</mat-card-title>
+    <br />
+    <form [formGroup]="verifyEmailForm" (ngSubmit)="verifyEmail()">
+      <div class="flex justify-content-between">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Verification Code</mat-label>
+          <input
+            type="number"
+            matInput
+            min="100000"
+            max="999999"
+            placeholder="Ex. john@example.com"
+            formControlName="vCode"
+          />
+        </mat-form-field>
+      </div>
+      <br />
+      <div>
+        <div>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="w-full"
+          >
+            Verify Account
+          </button>
+        </div>
+        <br />
+        <div>
+          <a
+            mat-flat-button
+            color="accent"
+            class="w-full secondary"
+            >Resend Verification Code</a
+          >
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,82 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>SignUp</mat-card-title>
+    <br />
+    <form [formGroup]="signupForm" (ngSubmit)="signup()">
+      <div class="flex justify-content-between">
+        <mat-form-field appearance="outline" class="w-half">
+          <mat-label>First Name</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Ex. John"
+            formControlName="firstName"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-half">
+          <mat-label>Last Name</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Ex. Doe"
+            formControlName="lastName"
+          />
+        </mat-form-field>
+      </div>
+      <div class="flex justify-content-between">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            placeholder="Ex. john@example.com"
+            formControlName="email"
+          />
+        </mat-form-field>
+      </div>
+      <div class="flex justify-content-between">
+        <mat-form-field appearance="outline" class="w-half">
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            matInput
+            placeholder="Password"
+            formControlName="password"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-half">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            type="password"
+            matInput
+            placeholder="Confirm Password"
+            formControlName="confirmPassword"
+          />
+        </mat-form-field>
+      </div>
+      <br />
+      <div>
+        <div>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="w-full"
+          >
+            Sign Up
+          </button>
+        </div>
+        <br />
+        <div>
+          <a
+            mat-flat-button
+            routerLink="/auth/login"
+            color="accent"
+            class="w-full secondary"
+            >Already have an account ?</a
+          >
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

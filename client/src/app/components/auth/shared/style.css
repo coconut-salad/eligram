@@ -1,0 +1,25 @@
+.secondary {
+  background-color: teal;
+  color: white;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-half {
+  width: 49.5%;
+}
+
+.flex {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .flex {
+    flex-direction: column;
+  }
+  .w-half {
+    width: 100%;
+  }
+}

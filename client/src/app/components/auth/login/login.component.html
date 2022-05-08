@@ -1,0 +1,43 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Log In</mat-card-title>
+    <br />
+    <form>
+      <div class="flex justify-content-between">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="Ex. john@example.com" />
+        </mat-form-field>
+      </div>
+      <div class="flex justify-content-between">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput placeholder="Password" />
+        </mat-form-field>
+      </div>
+      <br />
+      <div>
+        <div>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="w-full"
+          >
+            Log In
+          </button>
+        </div>
+        <br />
+        <div>
+          <a
+            mat-flat-button
+            routerLink="/auth/signup"
+            color="accent"
+            class="w-full secondary"
+            >Create an account</a
+          >
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+
+.sidenav-button {
+  text-align: left;
+  width: 100%;
+  font-size: large;
+}
+
+@media (min-width: 768px) {
+  .sidenav-button {
+    color: rgb(150, 150, 150);
+  }
+  .active {
+    color: white;
+  }
+}
