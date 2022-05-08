@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-verify-email',
@@ -8,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class VerifyEmailComponent implements OnInit {
   verifyEmailForm = new FormGroup({});
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.verifyEmailForm = new FormGroup({
@@ -20,6 +21,9 @@ export class VerifyEmailComponent implements OnInit {
     });
   }
   verifyEmail() {
-    console.log(this.verifyEmailForm.value);
+    if (this.verifyEmailForm.invalid) {
+      return;
+    }
+    this.authService.verifyEmail(this.verifyEmailForm.value.vCode);
   }
 }

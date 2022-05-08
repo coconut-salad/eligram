@@ -2,6 +2,7 @@ const express = require('express');
 const { body } = require('express-validator');
 
 const { signup } = require('../controllers/auth/signup');
+const { verifyEmail } = require('../controllers/auth/verify');
 const User = require('./../models/user');
 
 const router = express.Router();
@@ -43,5 +44,7 @@ router.post(
   ],
   signup
 );
+
+router.post('/verify-email', verifyEmail);
 
 module.exports = router;
