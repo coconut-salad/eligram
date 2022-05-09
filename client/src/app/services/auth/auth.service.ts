@@ -3,7 +3,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { Subject } from 'rxjs';
-import { AuthUser, LoginForm, SignUpForm } from 'src/app/models/auth-forms';
+import {
+  AuthUser,
+  LoginForm,
+  Roles,
+  SignUpForm,
+} from 'src/app/models/auth-forms';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +21,7 @@ export class AuthService {
   private userChangeNotifier = new Subject<AuthUser>();
   private user: AuthUser = {
     id: '',
+    role: Roles.USER,
     email: '',
     emailVerified: false,
     profileComplete: false,
@@ -25,6 +31,10 @@ export class AuthService {
 
   getUser() {
     return this.user;
+  }
+
+  getUserNotifier() {
+    return this.userChangeNotifier.asObservable();
   }
 
   getAuthStatus() {
@@ -99,9 +109,10 @@ export class AuthService {
     this.authToken = '';
     this.isAuth = false;
     this.user = {
-      email: '',
-      emailVerified: false,
       id: '',
+      email: '',
+      role: 'USER',
+      emailVerified: false,
       profileComplete: false,
     };
     this.authStatusNotifier.next(false);

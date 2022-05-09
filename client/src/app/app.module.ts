@@ -13,6 +13,8 @@ import { CompleteProfileComponent } from './components/auth/complete-profile/com
 import { FeedComponent } from './components/home/feed/feed.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     VerifyEmailComponent,
     CompleteProfileComponent,
     FeedComponent,
+    NotFoundComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

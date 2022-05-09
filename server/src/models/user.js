@@ -11,6 +11,12 @@ const userSchema = new mongoose.Schema({
   vCode: { type: Number },
   dateOfBirth: { type: Date, required: true, default: Date.now() },
   gender: { type: String, required: true, default: 'M', enum: ['M', 'F'] },
+  role: {
+    type: String,
+    required: true,
+    default: 'USER',
+    enum: ['OWNER', 'ADMIN', 'USER'],
+  },
 });
 
 module.exports = mongoose.model('User', userSchema);

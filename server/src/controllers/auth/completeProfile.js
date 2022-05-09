@@ -30,6 +30,7 @@ exports.completeProfile = async (req, res, next) => {
     const newToken = jwt.sign(
       {
         id: user._id,
+        role: user.role,
         email: user.email,
         emailVerified: true,
         profileComplete: true,

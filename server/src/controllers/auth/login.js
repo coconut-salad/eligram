@@ -19,6 +19,7 @@ exports.login = async (req, res, next) => {
     const token = jwt.sign(
       {
         id: user._id,
+        role: user.role,
         email: user.email,
         emailVerified: user.emailVerified,
         profileComplete: user.profileComplete,
@@ -36,6 +37,7 @@ exports.login = async (req, res, next) => {
     const token = jwt.sign(
       {
         id: user._id,
+        role: user.role,
         email: user.email,
         emailVerified: user.emailVerified,
         profileComplete: user.profileComplete,
@@ -52,6 +54,7 @@ exports.login = async (req, res, next) => {
   const token = jwt.sign(
     {
       id: user._id,
+      role: user.role,
       email: user.email,
       emailVerified: user.emailVerified,
       profileComplete: user.profileComplete,

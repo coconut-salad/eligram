@@ -34,16 +34,33 @@
         <ul
           class="navbar-nav justify-content-end flex-grow-1 pe-3 align-items-center"
         >
+          <li
+            class="nav-item"
+            *ngIf="isAuth && (user.role === 'ADMIN' || user.role === 'OWNER')"
+          >
+            <a
+              mat-button
+              class="sidenav-button"
+              routerLinkActive="active"
+              routerLink="/admin/dashboard"
+            >
+              <mat-icon style="margin-right: 1rem" class="only-side">
+                admin_panel_settings
+              </mat-icon>
+              <span>ADMIN</span>
+            </a>
+          </li>
           <li class="nav-item" *ngIf="isAuth">
             <a
               mat-button
               class="sidenav-button"
               routerLinkActive="active"
-              routerLink="/auth/login"
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLink="/"
             >
-              <mat-icon style="margin-right: 1rem" class="only-side"
-                >home</mat-icon
-              >
+              <mat-icon style="margin-right: 1rem" class="only-side">
+                home
+              </mat-icon>
               <span>Home</span>
             </a>
           </li>

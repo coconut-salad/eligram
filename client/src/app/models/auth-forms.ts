@@ -8,6 +8,7 @@ export interface SignUpForm {
 
 export interface AuthUser {
   id: string;
+  role: string;
   email: string;
   emailVerified: boolean;
   profileComplete: boolean;
@@ -16,4 +17,10 @@ export interface AuthUser {
 export interface LoginForm {
   email: string;
   password: string;
+}
+
+export enum Roles {
+  OWNER = 'OWNER',
+  ADMIN = 'ADMIN',
+  USER = 'USER',
 }

@@ -9,6 +9,7 @@ interface User extends Document {
   emailVerified: boolean;
   profileComplete: boolean;
   vCode?: number;
+  role: string;
   dateOfBirth: string;
   gender: string;
 }
