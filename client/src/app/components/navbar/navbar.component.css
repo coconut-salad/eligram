@@ -19,4 +19,13 @@
   .active {
     color: white;
   }
+  .media-none {
+    display: none;
+  }
 }
+
+/* @media (max-width: 768px) {
+   .nav-item-media-override {
+    visibility: visible !important;
+  }
+} */
