@@ -19,6 +19,15 @@ export interface LoginForm {
   password: string;
 }
 
+export interface GoogleSignInUser {
+  id: string;
+  email: string;
+  name: string;
+  profileImg: string;
+  accessToken: string;
+  idToken: string;
+}
+
 export enum Roles {
   OWNER = 'OWNER',
   ADMIN = 'ADMIN',

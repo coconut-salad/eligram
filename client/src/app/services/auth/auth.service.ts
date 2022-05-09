@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { Subject } from 'rxjs';
 import {
   AuthUser,
+  GoogleSignInUser,
   LoginForm,
   Roles,
   SignUpForm,
@@ -27,7 +28,11 @@ export class AuthService {
     profileComplete: false,
   };
 
-  constructor(private _snackBar: MatSnackBar, private router: Router) {}
+  constructor(
+    private _snackBar: MatSnackBar,
+    private router: Router,
+    private zone: NgZone
+  ) {}
 
   getUser() {
     return this.user;
@@ -120,6 +125,20 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.router.navigate(['/auth', 'login']);
+  }
+
+  loginWithGoogle(user: GoogleSignInUser) {
+    axios
+      .post(this.BASE_URL + '/auth/google', { user })
+      .then((result) => {
+        this.zone.run(() => {
+          this.handleTokenChange(result.data.message, result.data.token);
+          this.router.navigate(['/']);
+        });
+      })
+      .catch((err) => {
+        this._snackBar.open(err.response.data.message, '', { duration: 2500 });
+      });
   }
 
   verifyEmail(vCode: number) {

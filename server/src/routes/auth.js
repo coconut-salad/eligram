@@ -1,7 +1,7 @@
 const express = require('express');
 const { body } = require('express-validator');
 const { completeProfile } = require('../controllers/auth/completeProfile');
-const { login } = require('../controllers/auth/login');
+const { login, loginWithGoogle } = require('../controllers/auth/login');
 
 const { signup } = require('../controllers/auth/signup');
 const { verifyEmail, verifyToken } = require('../controllers/auth/verify');
@@ -54,5 +54,7 @@ router.post('/verify-token', verifyToken);
 router.post('/complete-profile', completeProfile);
 
 router.post('/login', [body('email').normalizeEmail()], login);
+
+router.post('/google', loginWithGoogle);
 
 module.exports = router;
