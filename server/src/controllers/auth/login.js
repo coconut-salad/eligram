@@ -11,6 +11,10 @@ exports.login = async (req, res, next) => {
   if (!user) {
     return next(errorHandler('Invalid Email or Password', 401));
   }
+  const passwordMatch = await bcrypt.compare(password, user.password);
+  if (!passwordMatch) {
+    return next(errorHandler('Invalid Email or Password', 401));
+  }
   if (!user.emailVerified) {
     const token = jwt.sign(
       {
@@ -44,10 +48,6 @@ exports.login = async (req, res, next) => {
       status: 403,
       token,
     });
-  }
-  const passwordMatch = await bcrypt.compare(password, user.password);
-  if (!passwordMatch) {
-    return next(errorHandler('Invalid Email or Password', 401));
   }
   const token = jwt.sign(
     {

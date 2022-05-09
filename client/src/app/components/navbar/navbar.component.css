@@ -19,13 +19,17 @@
   .active {
     color: white;
   }
-  .media-none {
+  .media-none,
+  .only-side {
     display: none;
   }
 }
 
-/* @media (max-width: 768px) {
-   .nav-item-media-override {
-    visibility: visible !important;
+@media (max-width: 768px) {
+  .only-nav {
+    display: none;
   }
-} */
+  .nav-item {
+    width: 100%;
+  }
+}

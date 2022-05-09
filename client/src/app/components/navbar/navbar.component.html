@@ -15,19 +15,8 @@
         <a class="navbar-brand" routerLink="/">Eligram</a>
       </div>
     </div>
-    <div>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon style="color: white">more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="logout()">
-          <mat-icon>logout</mat-icon>
-          <span>Logout</span>
-        </button>
-      </mat-menu>
-    </div>
     <div
-      class="offcanvas offcanvas-start media-none"
+      class="offcanvas offcanvas-start"
       tabindex="-1"
       id="offcanvasNavbar"
       aria-labelledby="offcanvasNavbarLabel"
@@ -42,7 +31,43 @@
         ></button>
       </div>
       <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        <ul
+          class="navbar-nav justify-content-end flex-grow-1 pe-3 align-items-center"
+        >
+          <li class="nav-item" *ngIf="isAuth">
+            <a
+              mat-button
+              class="sidenav-button"
+              routerLinkActive="active"
+              routerLink="/auth/login"
+            >
+              <mat-icon style="margin-right: 1rem" class="only-side"
+                >home</mat-icon
+              >
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="isAuth">
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="only-nav">
+              <mat-icon style="color: white">more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+              </button>
+            </mat-menu>
+          </li>
+          <li class="nav-item" *ngIf="isAuth">
+            <button
+              mat-button
+              (click)="logout()"
+              class="only-side sidenav-button"
+            >
+              <mat-icon style="margin-right: 1rem">logout</mat-icon>
+              <span>Logout</span>
+            </button>
+          </li>
           <li class="nav-item" *ngIf="!isAuth">
             <a
               mat-button
@@ -68,14 +93,3 @@
     </div>
   </div>
 </nav>
-
-<!--
-  <div class="d-flex">
-      <div class="d-flex align-items-center">
-
-      </div>
-      <div *ngIf="isAuth">
-
-      </div>
-    </div>
- -->
