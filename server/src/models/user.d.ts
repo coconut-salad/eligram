@@ -12,6 +12,7 @@ interface User extends Document {
   role: string;
   dateOfBirth: string;
   gender: string;
+  lastSeen: number;
 }
 
 let user: Model<User>;

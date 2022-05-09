@@ -2,16 +2,18 @@ const mongoose = require('mongoose');
 const User = require('./../models/user');
 
 mongoose
-  .connect(process.env.DB_URI)
+  .connect(process.env.DB_URI + 'test')
   .then(async (result) => {
     const user = await User.create({
       firstName: 'test',
       lastName: 'kek',
-      email: 'okokokok',
+      email: 'okokokokd',
       password: 'qweqweqweqwe',
-      username: 'rituparna',
+      username: 'rituparnad',
       vCode: 123123,
-      dateOfBirth: '5-3-2022',
+      dateOfBirth: '2001-10-16',
+      //this is of format idk
+      // date format yyyy-mm-dd
       gender: 'M',
     });
     console.log(user);

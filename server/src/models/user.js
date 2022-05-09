@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
     default: 'USER',
     enum: ['OWNER', 'ADMIN', 'USER'],
   },
+  lastSeen: { type: Number, default: Date.now() },
 });
 
 module.exports = mongoose.model('User', userSchema);
