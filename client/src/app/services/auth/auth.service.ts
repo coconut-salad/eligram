@@ -10,6 +10,7 @@ import {
   Roles,
   SignUpForm,
 } from 'src/app/models/auth-forms';
+import { ProgressIndicatorService } from '../progress/progress-indicator.service';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,7 @@ export class AuthService {
   };
 
   constructor(
+    private progressIndicatorService: ProgressIndicatorService,
     private _snackBar: MatSnackBar,
     private router: Router,
     private zone: NgZone
@@ -51,8 +53,10 @@ export class AuthService {
   }
 
   autoLogin() {
+    this.progressIndicatorService.turnOnLoading();
     const token = localStorage.getItem('token');
     if (!token) {
+      this.progressIndicatorService.turnOffLoading();
       return;
     }
     this.handleTokenChange('', token);
@@ -61,11 +65,13 @@ export class AuthService {
       .then((result) => {
         if (result.data.valid) {
           this.handleTokenChange('', token);
+          this.progressIndicatorService.turnOffLoading();
           return;
         }
       })
       .catch((err) => {
         this._snackBar.open('Session Expired', '', { duration: 2500 });
+        this.progressIndicatorService.turnOffLoading();
         this.logout();
       });
   }
@@ -84,28 +90,34 @@ export class AuthService {
   }
 
   signup(signupForm: SignUpForm) {
+    this.progressIndicatorService.turnOnLoading();
     axios
       .post(this.BASE_URL + '/auth/signup', { ...signupForm })
       .then((result) => {
+        this.progressIndicatorService.turnOffLoading();
         this.handleTokenChange(result.data.message, result.data.token);
         this.router.navigate(['/auth', 'verify-email']);
       })
       .catch((err) => {
+        this.progressIndicatorService.turnOffLoading();
         this._snackBar.open(err.response.data.message, '', { duration: 2500 });
       });
   }
 
   login(loginForm: LoginForm) {
+    this.progressIndicatorService.turnOnLoading();
     axios
       .post(this.BASE_URL + '/auth/login', {
         email: loginForm.email,
         password: loginForm.password,
       })
       .then((result) => {
+        this.progressIndicatorService.turnOffLoading();
         this.handleTokenChange(result.data.message, result.data.token);
         this.router.navigate(['/']);
       })
       .catch((err) => {
+        this.progressIndicatorService.turnOffLoading();
         this._snackBar.open(err.response.data.message, '', { duration: 2500 });
       });
   }
@@ -128,20 +140,24 @@ export class AuthService {
   }
 
   loginWithGoogle(user: GoogleSignInUser) {
+    this.progressIndicatorService.turnOnLoading();
     axios
       .post(this.BASE_URL + '/auth/google', { user })
       .then((result) => {
+        this.progressIndicatorService.turnOffLoading();
         this.zone.run(() => {
           this.handleTokenChange(result.data.message, result.data.token);
           this.router.navigate(['/']);
         });
       })
       .catch((err) => {
+        this.progressIndicatorService.turnOffLoading();
         this._snackBar.open(err.response.data.message, '', { duration: 2500 });
       });
   }
 
   verifyEmail(vCode: number) {
+    this.progressIndicatorService.turnOnLoading();
     axios
       .post(
         this.BASE_URL + '/auth/verify-email',
@@ -153,15 +169,18 @@ export class AuthService {
         }
       )
       .then((result) => {
+        this.progressIndicatorService.turnOffLoading();
         this.handleTokenChange(result.data.message, result.data.token);
         this.router.navigate(['/auth', 'complete-profile']);
       })
       .catch((err) => {
+        this.progressIndicatorService.turnOffLoading();
         this._snackBar.open(err.response.data.message, '', { duration: 2500 });
       });
   }
 
   completeProfile(dateOfBirth: string, gender: string) {
+    this.progressIndicatorService.turnOnLoading();
     axios
       .post(
         this.BASE_URL + '/auth/complete-profile',
@@ -176,10 +195,12 @@ export class AuthService {
         }
       )
       .then((result) => {
+        this.progressIndicatorService.turnOffLoading();
         this.handleTokenChange(result.data.message, result.data.token);
         this.router.navigate(['/']);
       })
       .catch((err) => {
+        this.progressIndicatorService.turnOffLoading();
         this._snackBar.open(err.response.data.message, '', { duration: 2500 });
       });
   }

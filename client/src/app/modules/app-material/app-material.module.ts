@@ -8,6 +8,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const material = [
   MatIconModule,
@@ -18,6 +19,7 @@ const material = [
   MatSelectModule,
   MatSnackBarModule,
   MatDatepickerModule,
+  MatProgressBarModule,
 ];
 
 @NgModule({
