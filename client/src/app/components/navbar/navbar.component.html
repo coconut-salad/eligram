@@ -69,6 +69,18 @@
               <mat-icon style="color: white">more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
+              <button mat-menu-item [routerLink]="['/u', user.username]">
+                <!-- <mat-icon>account_circle</mat-icon> -->
+                <!-- src="http://localhost:3000/assets/images/user-default.png" -->
+                <img
+                  [src]="user.profileImg"
+                  [alt]="user.username"
+                  referrerpolicy="no-referrer"
+                  mat-card-avatar
+                />
+                <span>Profile</span>
+              </button>
+              <mat-divider></mat-divider>
               <button mat-menu-item (click)="logout()">
                 <mat-icon>logout</mat-icon>
                 <span>Logout</span>

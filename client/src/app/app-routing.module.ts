@@ -7,6 +7,7 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { VerifyEmailComponent } from './components/auth/verify-email/verify-email.component';
 import { FeedComponent } from './components/home/feed/feed.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { UserProfileComponent } from './components/users/user-profile/user-profile.component';
 import { EmailVerifiedGuard } from './services/guards/email-verified.guard';
 import { IsAuthGuard } from './services/guards/is-auth.guard';
 import { ProfileCompleteGuard } from './services/guards/profile-complete.guard';
@@ -49,6 +50,10 @@ const routes: Routes = [
     component: CompleteProfileComponent,
     canActivate: [IsAuthGuard, ProfileCompleteGuard],
     data: { authRequired: true },
+  },
+  {
+    path: 'u/:username',
+    component: UserProfileComponent,
   },
   {
     path: 'not-found',

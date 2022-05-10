@@ -14,6 +14,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/api', API);
 
+app.use('/assets', express.static('src/public'));
+
 app.use(async (req, res, next) => {
   res.status(404).json({
     message: 'Not Found',

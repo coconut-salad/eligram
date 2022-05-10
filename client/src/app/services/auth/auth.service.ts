@@ -23,8 +23,10 @@ export class AuthService {
   private userChangeNotifier = new Subject<AuthUser>();
   private user: AuthUser = {
     id: '',
-    role: Roles.USER,
     email: '',
+    username: '',
+    profileImg: '',
+    role: Roles.USER,
     emailVerified: false,
     profileComplete: false,
   };
@@ -82,6 +84,10 @@ export class AuthService {
     }
     this.authToken = token;
     this.user = JSON.parse(window.atob(this.authToken.split('.')[1]));
+    if (this.user.profileImg.startsWith('/')) {
+      this.user.profileImg =
+        this.BASE_URL.split('/api')[0] + '/assets/images/user-default.png';
+    }
     this.isAuth = true;
     this.authStatusNotifier.next(true);
     this.userChangeNotifier.next(this.user);
@@ -129,6 +135,8 @@ export class AuthService {
       id: '',
       email: '',
       role: 'USER',
+      username: '',
+      profileImg: '',
       emailVerified: false,
       profileComplete: false,
     };
@@ -152,6 +160,8 @@ export class AuthService {
       })
       .catch((err) => {
         this.progressIndicatorService.turnOffLoading();
+        console.log(err.response);
+        console.log(err);
         this._snackBar.open(err.response.data.message, '', { duration: 2500 });
       });
   }

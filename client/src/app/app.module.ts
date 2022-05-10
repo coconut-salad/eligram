@@ -17,6 +17,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { SocialLoginComponent } from './components/auth/social-login/social-login.component';
+import { StrikeTextDirective } from './directives/strike-text.directive';
+import { UserProfileComponent } from './components/users/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { SocialLoginComponent } from './components/auth/social-login/social-logi
     NotFoundComponent,
     DashboardComponent,
     SocialLoginComponent,
+    StrikeTextDirective,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

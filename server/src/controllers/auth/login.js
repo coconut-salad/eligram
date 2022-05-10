@@ -27,6 +27,8 @@ exports.login = async (req, res, next) => {
         id: user._id,
         role: user.role,
         email: user.email,
+        username: user.username,
+        profileImg: user.profileImg,
         emailVerified: user.emailVerified,
         profileComplete: user.profileComplete,
       },
@@ -45,6 +47,8 @@ exports.login = async (req, res, next) => {
         id: user._id,
         role: user.role,
         email: user.email,
+        username: user.username,
+        profileImg: user.profileImg,
         emailVerified: user.emailVerified,
         profileComplete: user.profileComplete,
       },
@@ -62,6 +66,8 @@ exports.login = async (req, res, next) => {
       id: user._id,
       role: user.role,
       email: user.email,
+      username: user.username,
+      profileImg: user.profileImg,
       emailVerified: user.emailVerified,
       profileComplete: user.profileComplete,
     },
@@ -86,7 +92,7 @@ exports.loginWithGoogle = async (req, res, next) => {
     const existingUser = await User.findOne({ email: payload.email });
     if (!existingUser) {
       // create new user
-      const { given_name, family_name, email } = payload;
+      const { given_name, family_name, email, picture } = payload;
 
       const password = randomString(10);
       const hashedPassword = await bcrypt.hash(password, 12);
@@ -105,6 +111,7 @@ exports.loginWithGoogle = async (req, res, next) => {
         username,
         emailVerified: true,
         password: hashedPassword,
+        profileImg: picture,
         vCode: Math.floor(100000 + Math.random() * 99999),
       });
 
@@ -113,6 +120,8 @@ exports.loginWithGoogle = async (req, res, next) => {
           id: newuser._id,
           role: newuser.role,
           email: newuser.email,
+          username: newuser.username,
+          profileImg: newuser.profileImg,
           emailVerified: newuser.emailVerified,
           profileComplete: newuser.profileComplete,
         },
@@ -132,6 +141,8 @@ exports.loginWithGoogle = async (req, res, next) => {
           id: existingUser._id,
           role: existingUser.role,
           email: existingUser.email,
+          username: existingUser.username,
+          profileImg: existingUser.profileImg,
           emailVerified: existingUser.emailVerified,
           profileComplete: existingUser.profileComplete,
         },
@@ -149,6 +160,8 @@ exports.loginWithGoogle = async (req, res, next) => {
         id: existingUser._id,
         role: existingUser.role,
         email: existingUser.email,
+        username: existingUser.username,
+        profileImg: existingUser.profileImg,
         emailVerified: existingUser.emailVerified,
         profileComplete: existingUser.profileComplete,
       },

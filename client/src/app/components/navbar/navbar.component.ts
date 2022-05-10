@@ -11,11 +11,13 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class NavbarComponent implements OnInit, OnDestroy {
   isAuth = false;
   user: AuthUser = {
-    email: '',
-    emailVerified: false,
     id: '',
-    profileComplete: false,
+    email: '',
     role: 'USER',
+    username: '',
+    profileImg: '',
+    emailVerified: false,
+    profileComplete: false,
   };
   isAuthSubscription = new Subscription();
   userSubscription = new Subscription();

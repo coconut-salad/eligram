@@ -12,6 +12,14 @@
   font-size: large;
 }
 
+img[mat-card-avatar] {
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+  border-radius: 100%;
+  margin-right: 1rem;
+}
+
 @media (min-width: 768px) {
   .sidenav-button {
     color: rgb(150, 150, 150);

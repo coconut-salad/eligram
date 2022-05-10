@@ -9,6 +9,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDividerModule } from '@angular/material/divider';
 
 const material = [
   MatIconModule,
@@ -17,6 +18,7 @@ const material = [
   MatInputModule,
   MatButtonModule,
   MatSelectModule,
+  MatDividerModule,
   MatSnackBarModule,
   MatDatepickerModule,
   MatProgressBarModule,

@@ -12,7 +12,6 @@ mongoose
       username: 'rituparnad',
       vCode: 123123,
       dateOfBirth: '2001-10-16',
-      //this is of format idk
       // date format yyyy-mm-dd
       gender: 'M',
     });

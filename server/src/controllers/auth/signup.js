@@ -36,6 +36,8 @@ exports.signup = async (req, res, next) => {
         id: user._id,
         role: user.role,
         email: user.email,
+        username: user.username,
+        profileImg: user.profileImg,
         emailVerified: user.emailVerified,
         profileComplete: user.profileComplete,
       },

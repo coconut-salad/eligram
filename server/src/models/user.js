@@ -18,6 +18,11 @@ const userSchema = new mongoose.Schema({
     enum: ['OWNER', 'ADMIN', 'USER'],
   },
   lastSeen: { type: Number, default: Date.now() },
+  profileImg: {
+    type: String,
+    required: true,
+    default: '/assets/images/user-deafult.png',
+  },
 });
 
 module.exports = mongoose.model('User', userSchema);

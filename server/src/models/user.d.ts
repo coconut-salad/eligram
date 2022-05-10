@@ -13,6 +13,7 @@ interface User extends Document {
   dateOfBirth: string;
   gender: string;
   lastSeen: number;
+  profileImg: string;
 }
 
 let user: Model<User>;
