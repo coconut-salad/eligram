@@ -11,6 +11,12 @@ const userSchema = new mongoose.Schema({
   vCode: { type: Number },
   dateOfBirth: { type: Date, required: true, default: Date.now() },
   gender: { type: String, required: true, default: 'M', enum: ['M', 'F'] },
+  provider: {
+    type: String,
+    required: true,
+    default: 'CUSTOM',
+    enum: ['CUSTOM', 'GOOGLE'],
+  },
   role: {
     type: String,
     required: true,

@@ -54,6 +54,7 @@ const routes: Routes = [
   {
     path: 'u/:username',
     component: UserProfileComponent,
+    canActivate: [IsAuthGuard, WizardGuard],
   },
   {
     path: 'not-found',

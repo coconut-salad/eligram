@@ -8,6 +8,7 @@ interface User extends Document {
   username: string;
   emailVerified: boolean;
   profileComplete: boolean;
+  provider: string;
   vCode?: number;
   role: string;
   dateOfBirth: string;

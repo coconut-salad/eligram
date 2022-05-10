@@ -112,6 +112,7 @@ exports.loginWithGoogle = async (req, res, next) => {
         emailVerified: true,
         password: hashedPassword,
         profileImg: picture,
+        provider: 'GOOGLE',
         vCode: Math.floor(100000 + Math.random() * 99999),
       });
 

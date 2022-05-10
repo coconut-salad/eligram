@@ -18,16 +18,15 @@ export class SocialLoginComponent implements OnInit {
   ngOnInit(): void {}
   signInWithGoogle() {
     this.progressIndicatorService.turnOnLoading();
-    this.socialLoginService.login(Provider.GOOGLE).subscribe(
-      (user) => {
+    this.socialLoginService.login(Provider.GOOGLE).subscribe({
+      next: (user) => {
         this.progressIndicatorService.turnOffLoading();
-        console.log(user);
         this.authService.loginWithGoogle(user);
       },
-      (e) => {
+      error: (e) => {
         console.log(e);
         this.progressIndicatorService.turnOffLoading();
-      }
-    );
+      },
+    });
   }
 }
